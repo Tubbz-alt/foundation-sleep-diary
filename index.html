@@ -1,0 +1,338 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Your sleep diary</title>
+
+        <!-- jQuery -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+        <!-- Foundation compressed CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg==" crossorigin="anonymous">
+
+        <!-- Foundation compressed JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js" integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA==" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- https://tholman.com/github-corners/ -->
+        <a href="https://github.com/wesinator/foundation-sleep-diary" target="_blank" class="github-corner" aria-label="View source on GitHub" title="View source on GitHub">
+          <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+          </svg>
+        </a>
+        <style>
+        .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+        </style>
+
+        <div class="float-center text-center">
+            <br>
+            <h1>Your sleep diary</h1>
+            <a href="https://www.therapistaid.com/therapy-worksheet/sleep-diary" target="_blank" title="Sleep diary PDF this table is based on">
+              Based on Sleep Diary PDF by Therapist Aid
+            </a>
+            <br>
+            <br>
+
+            <div id="current-week">
+            </div>
+
+            <div class="grid-x">
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th class="text-center">Day 1</th>
+                    <th class="text-center">Day 2</th>
+                    <th class="text-center">Day 3</th>
+                    <th class="text-center">Day 4</th>
+                    <th class="text-center">Day 5</th>
+                    <th class="text-center">Day 6</th>
+                    <th class="text-center">Day 7</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Day of week</td>
+                    <td>
+                      <input type="text" placeholder="Mon">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Tue">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Wed">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Thurs">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Fri">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Sat">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Sun">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>I went to bed at (24-hour time):</td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="22:00">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>I woke up at:</td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="08:00">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Last night, I slept for <i>_x_</i> hours:</td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                    <td>
+                      <input type="number" placeholder="8"> hours
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Last night, it took me about <i>_x_</i> minutes to fall asleep:</td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                    <td>
+                      <input type="number" placeholder="20"> minutes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>I felt that my quality of sleep was:</td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select>
+                        <option>Very good</option>
+                        <option>Good</option>
+                        <option>Bad</option>
+                        <option>Very bad</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>This morning, I feel:</td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                    <td>
+                      <input type="checkbox"><label>Refreshed</label>
+                      <input type="checkbox"><label>Tired</label>
+                      <input type="checkbox"><label>Groggy</label>
+                      <input type="checkbox"><label>Alert</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>My sleep was made more difficult by:</td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                    <td>
+                      <input type="text" placeholder="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort" title="e.g. temperature, noise, dreams, thoughts, not feeling tired, discomfort, new location">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>During the night, I woke up <i>_x_</i> time(s):</td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                    <td>
+                      <input type="number" placeholder="1">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </body>
+</html>
